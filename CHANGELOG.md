@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/hostinger/ansible-collection-core/compare/v0.1.0...v0.2.0) (2023-11-09)
+
+
+### Features
+
+* Add nerdctl role ([ffb89d5](https://github.com/hostinger/ansible-collection-core/commit/ffb89d57540a7af44173363eca10e3f7da0fed66))
+
 ## 0.1.0 (2023-11-09)
 
 
