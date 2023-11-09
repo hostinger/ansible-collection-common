@@ -1,0 +1,15 @@
+---
+namespace: hostinger
+name: core
+repository: https://github.com/hostinger/ansible-collection-core
+version: 0.0.1 # x-release-please-version
+readme: README.md
+authors:
+  - konradasb
+description: Collection of Ansible roles for configuring Linux servers used internally at Hostinger.
+license:
+  - MIT
+dependencies:
+  community.general: ">=4.5.0"
+tags:
+  - fireactions
