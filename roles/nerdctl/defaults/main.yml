@@ -1,0 +1,9 @@
+---
+nerdctl_version: 1.7.0
+nerdctl_url: |
+  https://github.com/containerd/nerdctl/releases/download/v{{ nerdctl_version }}/nerdctl-{{ nerdctl_version }}-{{ nerdctl_os }}-{{ nerdctl_arch }}.tar.gz
+nerdctl_arch: amd64
+nerdctl_os: linux
+nerdctl_install_dir: /opt/nerdctl/{{ nerdctl_version }}
+nerdctl_owner: root
+nerdctl_group: root

@@ -1,0 +1,34 @@
+---
+- name: Create directory
+  ansible.builtin.file:
+    name: "{{ nerdctl_install_dir }}"
+    mode: 0755
+    owner: "{{ nerdctl_owner }}"
+    group: "{{ nerdctl_group }}"
+    state: directory
+
+- name: Download tarball
+  ansible.builtin.get_url:
+    url: "{{ nerdctl_url }}"
+    dest: "{{ nerdctl_install_dir }}/nerdctl.tar.gz"
+    mode: 0644
+    owner: "{{ nerdctl_owner }}"
+    group: "{{ nerdctl_group }}"
+    timeout: 30
+
+- name: Unarchive tarball
+  ansible.builtin.unarchive:
+    src:  "{{ nerdctl_install_dir }}/nerdctl.tar.gz"
+    remote_src: true
+    dest: "{{ nerdctl_install_dir }}"
+    creates: "{{ nerdctl_install_dir }}/nerdctl"
+    owner: "{{ nerdctl_owner }}"
+    group: "{{ nerdctl_group }}"
+
+- name: Create symlink to binary
+  ansible.builtin.file:
+    src: "{{ nerdctl_install_dir }}/nerdctl"
+    dest: /usr/local/bin/nerdctl
+    mode: 0755
+    state: link
+    force: true
