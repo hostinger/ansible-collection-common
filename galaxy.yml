@@ -12,4 +12,4 @@ license:
 dependencies:
   community.general: ">=4.5.0"
 tags:
-  - fireactions
+  - linux
