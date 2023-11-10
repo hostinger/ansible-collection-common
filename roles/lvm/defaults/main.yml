@@ -1,0 +1,29 @@
+---
+# Example:
+#
+# lvm_profiles:
+# - name: example
+#   content: |
+#     activation {
+#       thin_pool_autoextend_threshold=80
+#       thin_pool_autoextend_percent=20
+#     }
+lvm_profiles: []
+
+# Example:
+#
+# lvm_vgs:
+# - name: example
+#   state: present
+#   pvs:
+#     - /dev/sdb
+lvm_vgs: []
+
+# Example:
+#
+# lvm_lvs:
+# - vg: example
+#   size: 100G
+#   thinpool: thinpool
+#   opts: "--poolmetadatasize 1G --profile example --monitor y"
+lvm_lvs: []

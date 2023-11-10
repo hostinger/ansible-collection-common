@@ -1,0 +1,44 @@
+---
+- name: Install dependencies
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - lvm2
+
+- name: Configure profiles
+  ansible.builtin.copy:
+    content: "{{ item.content }}"
+    dest: "/etc/lvm/profile/{{ item.name }}.profile"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ lvm_profiles }}"
+  when:
+    - lvm_profiles | length > 0
+
+- name: Configure volume group(s)
+  community.general.lvg:
+    vg: "{{ item.name }}"
+    pvs: "{{ item.pvs | join(',') }}"
+    state: "{{ item.state | default('present') }}"
+    force: true
+  loop: "{{ lvm_vgs }}"
+  when:
+    - lvm_vgs | length > 0
+
+- name: Configure logical volume(s)
+  community.general.lvol:
+    vg: "{{ item.vg }}"
+    lv: "{{ item.name | default(omit) }}"
+    size: "{{ item.size | default(omit) }}"
+    opts: "{{ item.opts | default('') }}"
+    thinpool: "{{ item.thinpool | default(omit) }}"
+    resizefs: "{{ item.resizefs | default(omit) }}"
+    active: "{{ item.active | default(omit) }}"
+    shrink: "{{ item.shrink | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+    force: true
+  loop: "{{ lvm_lvs }}"
+  when:
+    - lvm_lvs | length > 0

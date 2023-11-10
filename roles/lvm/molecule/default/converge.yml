@@ -1,0 +1,17 @@
+---
+- name: Converge
+  hosts:
+  - all
+
+  pre_tasks:
+  - name: Update apt cache
+    ansible.builtin.apt:
+      update_cache: yes
+    when: ansible_os_family == 'Debian'
+  - name: Update yum cache
+    ansible.builtin.yum:
+      update_cache: yes
+    when: ansible_os_family == 'RedHat'
+
+  roles:
+  - lvm
