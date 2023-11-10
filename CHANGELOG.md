@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/hostinger/ansible-collection-core/compare/v0.3.0...v0.4.0) (2023-11-10)
+
+
+### Features
+
+* Add lvm role ([#6](https://github.com/hostinger/ansible-collection-core/issues/6)) ([493a0b7](https://github.com/hostinger/ansible-collection-core/commit/493a0b73796bea1dede1d1710588b9524d8fc3bc))
+
 ## [0.3.0](https://github.com/hostinger/ansible-collection-core/compare/v0.2.0...v0.3.0) (2023-11-10)
 
 
