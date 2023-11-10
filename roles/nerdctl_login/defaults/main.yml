@@ -1,0 +1,5 @@
+---
+nerdctl_login_config_path: /root/.docker/config.json
+nerdctl_login_registry_url: ""
+nerdctl_login_password: ""
+nerdctl_login_username: ""

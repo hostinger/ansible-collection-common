@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  role_name: nerdctl_login
+  author: hostinger
+  description: Ansible role for logging into container registries using nerdctl
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+  - name: Fedora
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  galaxy_tags:
+  - nerdctl
