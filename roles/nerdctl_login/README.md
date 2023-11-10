@@ -6,6 +6,8 @@ Ansible role for logging into container registries using [nerdctl](https://githu
 
 The nerdctl binary must be installed on the target host and available in the PATH before running this role. This can be done by using the [hostinger.core.nerdctl](../nerdctl) role.
 
+The [jmespath](https://pypi.org/project/jmespath/) Python package must be installed on the source host before running this role.
+
 ## Dependencies
 
 None.
