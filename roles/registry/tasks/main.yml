@@ -1,0 +1,63 @@
+---
+- name: Create directories
+  ansible.builtin.file:
+    name: "{{ item }}"
+    mode: 0755
+    owner: "{{ registry_owner }}"
+    group: "{{ registry_group }}"
+    state: directory
+  loop:
+    - "{{ registry_install_dir }}"
+    - "{{ registry_config_dir }}"
+
+- name: Download tarball
+  ansible.builtin.get_url:
+    url: "{{ registry_url }}"
+    dest: "{{ registry_install_dir }}/registry.tar.gz"
+    mode: 0644
+    owner: "{{ registry_owner }}"
+    group: "{{ registry_group }}"
+    timeout: 30
+
+- name: Unarchive tarball
+  ansible.builtin.unarchive:
+    src:  "{{ registry_install_dir }}/registry.tar.gz"
+    remote_src: true
+    dest: "{{ registry_install_dir }}"
+    creates: "{{ registry_install_dir }}/registry"
+    owner: "{{ registry_owner }}"
+    group: "{{ registry_group }}"
+
+- name: Create symlink to binary
+  ansible.builtin.file:
+    src: "{{ registry_install_dir }}/registry"
+    dest: /usr/local/bin/registry
+    mode: 0755
+    state: link
+    force: true
+
+- name: Template service file
+  ansible.builtin.template:
+    src: registry.service.j2
+    dest: /etc/systemd/system/registry@.service
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - Reload systemd
+
+- name: Template config file
+  ansible.builtin.template:
+    src: config.yml.j2
+    dest: "{{ registry_config_dir }}/{{ registry_name }}.yml"
+    mode: 0644
+    owner: "{{ registry_owner }}"
+    group: "{{ registry_group }}"
+  notify:
+    - Restart registry
+
+- name: Enable and start service
+  ansible.builtin.service:
+    name: registry@{{ registry_name }}
+    enabled: true
+    state: started
