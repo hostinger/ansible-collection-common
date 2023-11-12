@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/hostinger/ansible-collection-core/compare/v0.4.0...v0.5.0) (2023-11-12)
+
+
+### Features
+
+* Add registry role ([#8](https://github.com/hostinger/ansible-collection-core/issues/8)) ([5f05790](https://github.com/hostinger/ansible-collection-core/commit/5f05790602781c6b26b90a98a805e1de0bc1424e))
+
 ## [0.4.0](https://github.com/hostinger/ansible-collection-core/compare/v0.3.0...v0.4.0) (2023-11-10)
 
 
