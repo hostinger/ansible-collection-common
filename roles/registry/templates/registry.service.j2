@@ -1,0 +1,14 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Registry
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/registry serve {{ registry_config_dir }}/%i.yml
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
