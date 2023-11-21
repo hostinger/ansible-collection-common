@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  role_name: tc_redirect_tap
+  author: hostinger
+  description: Ansible role for installing tc-redirect-tap CNI plugin
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+  - name: Fedora
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  galaxy_tags:
+  - cni-plugins
+  - tc-redirect-tap
