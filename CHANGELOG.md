@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0](https://github.com/hostinger/ansible-collection-core/compare/v0.5.0...v0.6.0) (2023-11-21)
+
+
+### Features
+
+* Add tc_redirect_tap role ([#10](https://github.com/hostinger/ansible-collection-core/issues/10)) ([db86ce1](https://github.com/hostinger/ansible-collection-core/commit/db86ce1d171432a37224627928aed6868c45ec73))
+
+
+### Bug Fixes
+
+* **roles/nerdctl_login:** Always login to registry ([0a2a232](https://github.com/hostinger/ansible-collection-core/commit/0a2a232b7011b5135a263607483a6bfb6d5727ab))
+
 ## [0.5.0](https://github.com/hostinger/ansible-collection-core/compare/v0.4.0...v0.5.0) (2023-11-12)
 
 
