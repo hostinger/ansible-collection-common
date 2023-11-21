@@ -1,19 +1,8 @@
 ---
-- name: Get Docker config contents
-  ansible.builtin.slurp:
-    src: "{{ nerdctl_login_config_path }}"
-  register: nerdctl_login_docker_config
-  ignore_errors: true
-  when:
-    - nerdctl_login_registry_url | length > 0
-
 - name: Login to container registry
   environment:
     REGISTRY_PASSWORD: "{{ nerdctl_login_password }}"
   ansible.builtin.shell: nerdctl login -u {{ nerdctl_login_username }} -p "${REGISTRY_PASSWORD}" {{ nerdctl_login_registry_url }}
+  changed_when: false
   when:
-    - nerdctl_login_username | length > 0
-    - nerdctl_login_password | length > 0
     - nerdctl_login_registry_url | length > 0
-    - nerdctl_login_docker_config['content'] is not defined or
-      nerdctl_login_docker_config['content'] | b64decode | from_json | json_query('auths."' ~ nerdctl_login_registry_url ~ '".auth') is not defined
