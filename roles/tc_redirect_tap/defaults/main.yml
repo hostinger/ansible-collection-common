@@ -1,0 +1,10 @@
+---
+tc_redirect_tap_version: 0.0.1
+tc_redirect_tap_url: |
+  https://github.com/hostinger/tc-redirect-tap/releases/download/v{{ tc_redirect_tap_version }}/tc-redirect-tap-{{ tc_redirect_tap_arch }}
+tc_redirect_tap_owner: root
+tc_redirect_tap_group: root
+tc_redirect_tap_arch: amd64
+tc_redirect_tap_dir: /opt/tc-redirect-tap
+tc_redirect_tap_install_dir: "{{ tc_redirect_tap_dir }}/{{ tc_redirect_tap_version }}"
+tc_redirect_tap_bin_dir: "{{ tc_redirect_tap_dir }}/bin"
