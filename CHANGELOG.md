@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/hostinger/ansible-collection-core/compare/v0.6.0...v0.6.1) (2023-12-18)
+
+
+### Bug Fixes
+
+* **roles/registry:** Add garbage collection cronjob ([#12](https://github.com/hostinger/ansible-collection-core/issues/12)) ([4b53735](https://github.com/hostinger/ansible-collection-core/commit/4b537351dfc28caafd9942bf682c800b68616363))
+
 ## [0.6.0](https://github.com/hostinger/ansible-collection-core/compare/v0.5.0...v0.6.0) (2023-11-21)
 
 
