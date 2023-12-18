@@ -19,3 +19,6 @@ registry_config:
   http:
     addr: localhost:5000
     secret: asecretforlocaldevelopment
+registry_garbage_collect_enabled: false
+registry_garbage_collect_flags: --delete-untagged=false
+registry_garbage_collect_schedule: daily
