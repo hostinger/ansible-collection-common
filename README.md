@@ -1,4 +1,4 @@
-# Hostinger Core Ansible Collection
+# Hostinger Common Ansible Collection
 
 Collection of Ansible roles for configuring Linux servers used internally at Hostinger.
 
@@ -7,14 +7,14 @@ Collection of Ansible roles for configuring Linux servers used internally at Hos
 Before using this collection, install it with `ansible-galaxy`:
 
 ```bash
-ansible-galaxy collection install hostinger.core
+ansible-galaxy collection install hostinger.common
 ```
 
 You can also include it in a `requirements.yml` file:
 
 ```yaml
 collections:
-- name: hostinger.core
+- name: hostinger.common
 ```
 
 and install it with:
@@ -25,12 +25,12 @@ ansible-galaxy collection install -r requirements.yml
 
 ## Usage
 
-To use a role from this collection, prefix it with `hostinger.core`:
+To use a role from this collection, prefix it with `hostinger.common`:
 
 ```yaml
 - hosts: all
   roles:
-    - role: hostinger.core.sysctl
+    - role: hostinger.common.sysctl
       vars:
         sysctl_d: {}
 ```

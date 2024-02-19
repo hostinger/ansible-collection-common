@@ -18,7 +18,7 @@ jobs:
       uses: google-github-actions/release-please-action@v3
       id: release-please
       with:
-        package-name: ansible-collection-core
+        package-name: ansible-collection-common
         release-type: python
         pull-request-title-pattern: 'chore${scope}: Release ${component} ${version}'
         token: ${{ secrets.ORG_GITHUB_TOKEN }}

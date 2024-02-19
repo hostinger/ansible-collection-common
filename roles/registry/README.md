@@ -19,7 +19,7 @@ Refer to [defaults/main.yml](defaults/main.yml) for a list of variables along wi
 ```yaml
 - hosts: all
   roles:
-    - role: hostinger.core.registry
+    - role: hostinger.common.registry
 ```
 
 ## License
