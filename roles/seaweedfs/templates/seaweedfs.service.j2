@@ -1,0 +1,12 @@
+[Unit]
+Description=SeaweedFS
+Documentation=https://github.com/seaweedfs/seaweedfs
+After=network.target
+
+[Service]
+User={{ seaweedfs_owner }}
+ExecStart=/usr/bin/weed {{ seaweedfs_command }} {% for arg in seaweedfs_args %}{{ arg }} {% endfor +%}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

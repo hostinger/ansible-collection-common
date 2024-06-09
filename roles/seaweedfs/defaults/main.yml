@@ -1,0 +1,27 @@
+---
+seaweedfs_version: 3.67
+seaweedfs_url: https://github.com/seaweedfs/seaweedfs/releases/download/{{ seaweedfs_version }}/{{ seaweedfs_os }}_{{ seaweedfs_arch }}.tar.gz
+seaweedfs_arch: amd64
+seaweedfs_os: linux
+seaweedfs_install_dir: /opt/seaweedfs/{{ seaweedfs_version }}
+seaweedfs_owner: root
+seaweedfs_group: root
+seaweedfs_config_dir: /etc/seaweedfs
+seaweedfs_service_state: started
+seaweedfs_command: server
+seaweedfs_args:
+  - -ip=127.0.0.1
+  - -volume.max=0
+  - -volume.fileSizeLimitMB=2048
+seaweedfs_s3_config: {}
+  # identities:
+  #   - name: default
+  #     credentials:
+  #       - accessKey: "example"
+  #         secretKey: "example"
+  #     actions:
+  #       - Admin
+  #       - Read
+  #       - List
+  #       - Tagging
+  #       - Write

@@ -1,0 +1,74 @@
+---
+- name: Fail when unsupported architecture
+  ansible.builtin.fail:
+    msg: "Unsupported architecture"
+  when:
+    - seaweedfs_arch not in ['amd64', 'arm64']
+
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ seaweedfs_owner }}"
+    group: "{{ seaweedfs_group }}"
+    mode: 0755
+  with_items:
+    - "{{ seaweedfs_install_dir }}"
+    - "{{ seaweedfs_config_dir }}"
+
+- name: Download tarball
+  ansible.builtin.get_url:
+    url: "{{ seaweedfs_url }}"
+    dest: "{{ seaweedfs_install_dir }}/seaweedfs.tar.gz"
+    mode: 0644
+    owner: "{{ seaweedfs_owner }}"
+    group: "{{ seaweedfs_group }}"
+    timeout: 30
+
+- name: Unarchive tarball
+  ansible.builtin.unarchive:
+    src: "{{ seaweedfs_install_dir }}/seaweedfs.tar.gz"
+    dest: "{{ seaweedfs_install_dir }}"
+    mode: 0755
+    creates: "{{ seaweedfs_install_dir }}/weed"
+    owner: "{{ seaweedfs_owner }}"
+    group: "{{ seaweedfs_group }}"
+    remote_src: true
+
+- name: Create symlink to binaries
+  ansible.builtin.file:
+    src: "{{ seaweedfs_install_dir }}/{{ item }}"
+    dest: /usr/bin/{{ item }}
+    state: link
+    force: true
+    owner: "{{ seaweedfs_owner }}"
+    group: "{{ seaweedfs_group }}"
+    mode: 0755
+  with_items:
+    - weed
+
+- name: Template service file
+  ansible.builtin.template:
+    src: seaweedfs.service.j2
+    dest: /etc/systemd/system/seaweedfs.service
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - Restart seaweedfs
+
+- name: Template S3 config file
+  ansible.builtin.template:
+    src: s3.conf.j2
+    dest: "{{ seaweedfs_config_dir }}/s3.conf"
+    mode: 0644
+    owner: "{{ seaweedfs_owner }}"
+    group: "{{ seaweedfs_group }}"
+  notify:
+    - Restart seaweedfs
+
+- name: Enable and start service
+  ansible.builtin.service:
+    name: seaweedfs
+    enabled: true
+    state: "{{ seaweedfs_service_state }}"
