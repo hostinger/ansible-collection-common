@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/hostinger/ansible-collection-common/compare/v0.6.1...v0.7.0) (2024-06-09)
+
+
+### Features
+
+* Add seaweedfs role ([#15](https://github.com/hostinger/ansible-collection-common/issues/15)) ([c6e5bb5](https://github.com/hostinger/ansible-collection-common/commit/c6e5bb58a6ce35c847b1ee70d807767938a02bb1))
+
 ## [0.6.1](https://github.com/hostinger/ansible-collection-common/compare/v0.6.0...v0.6.1) (2023-12-18)
 
 
