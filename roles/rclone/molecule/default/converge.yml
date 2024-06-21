@@ -1,0 +1,27 @@
+---
+- name: Converge
+  hosts:
+  - all
+
+  pre_tasks:
+  - name: Update apt cache
+    ansible.builtin.apt:
+      update_cache: yes
+    when: ansible_os_family == 'Debian' or ansible_os_family == 'Ubuntu'
+
+  - name: Install unzip
+    ansible.builtin.package:
+      name: unzip
+      state: present
+
+  roles:
+  - rclone
+
+  vars:
+    rclone_remotes:
+      - name: example
+        opts:
+          type: drive
+          token: ' {"access_token":"","token_type":"","refresh_token":"","expiry":""}'
+          client_secret: 67890
+          client_id: 12345

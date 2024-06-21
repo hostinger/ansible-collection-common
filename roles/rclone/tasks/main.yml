@@ -1,0 +1,46 @@
+---
+- name: Create directories
+  ansible.builtin.file:
+    name: "{{ item }}"
+    mode: 0755
+    owner: "{{ rclone_owner }}"
+    group: "{{ rclone_group }}"
+    state: directory
+  loop:
+    - "{{ rclone_install_dir }}"
+    - "{{ rclone_config_dir }}"
+
+- name: Download tarball
+  ansible.builtin.get_url:
+    url: "{{ rclone_url }}"
+    dest: "{{ rclone_install_dir }}/rclone.zip"
+    mode: 0644
+    owner: "{{ rclone_owner }}"
+    group: "{{ rclone_group }}"
+    timeout: 30
+
+- name: Unarchive tarball
+  ansible.builtin.unarchive:
+    src:  "{{ rclone_install_dir }}/rclone.zip"
+    remote_src: true
+    dest: "{{ rclone_install_dir }}"
+    creates: "{{ rclone_install_dir }}/rclone-v{{ rclone_version }}-linux-{{
+      rclone_arch }}"
+    owner: "{{ rclone_owner }}"
+    group: "{{ rclone_group }}"
+
+- name: Create symlink to binary
+  ansible.builtin.file:
+    src: "{{ rclone_install_dir }}/rclone-v{{ rclone_version }}-linux-{{ rclone_arch }}/rclone"
+    dest: /usr/local/bin/rclone
+    mode: 0755
+    state: link
+    force: true
+
+- name: Template config file
+  ansible.builtin.template:
+    src: rclone.conf.j2
+    dest: "{{ rclone_config_dir }}/rclone.conf"
+    mode: 0644
+    owner: "{{ rclone_owner }}"
+    group: "{{ rclone_group }}"

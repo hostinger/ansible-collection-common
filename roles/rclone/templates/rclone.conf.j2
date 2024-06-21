@@ -1,0 +1,7 @@
+{% for remote in rclone_remotes %}
+[{{ remote.name }}]
+{% for key, value in remote.opts.items() %}
+{{ key }} = {{ value }}
+{% endfor %}
+
+{% endfor %}

@@ -1,0 +1,17 @@
+---
+rclone_arch: amd64
+rclone_url: https://github.com/rclone/rclone/releases/download/v{{ rclone_version }}/rclone-v{{ rclone_version }}-{{ rclone_os }}-{{ rclone_arch }}.zip
+rclone_version: 1.67.0
+rclone_os: linux
+rclone_install_dir: /opt/rclone/{{ rclone_version }}
+rclone_owner: root
+rclone_group: root
+rclone_config_dir: /etc/rclone
+rclone_remotes: {}
+# rclone_remotes:
+#   - name: example
+#     opts:
+#       type: drive
+#       token: ' {"access_token":"","token_type":"","refresh_token":"","expiry":""}'
+#       client_secret: 67890
+#       client_id: 12345
