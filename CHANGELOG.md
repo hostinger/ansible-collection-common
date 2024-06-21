@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/hostinger/ansible-collection-common/compare/v0.8.0...v0.9.0) (2024-06-21)
+
+
+### Features
+
+* Add rclone role ([#19](https://github.com/hostinger/ansible-collection-common/issues/19)) ([b913366](https://github.com/hostinger/ansible-collection-common/commit/b913366748de35686abc3871ed73316608434ae7))
+
 ## [0.8.0](https://github.com/hostinger/ansible-collection-common/compare/v0.7.0...v0.8.0) (2024-06-21)
 
 
