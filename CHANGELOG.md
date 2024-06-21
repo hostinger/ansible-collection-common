@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/hostinger/ansible-collection-common/compare/v0.7.0...v0.8.0) (2024-06-21)
+
+
+### Features
+
+* Add mount role ([#17](https://github.com/hostinger/ansible-collection-common/issues/17)) ([6a6c385](https://github.com/hostinger/ansible-collection-common/commit/6a6c385e90fbde0d9de65243ebe3b66403026aa2))
+
 ## [0.7.0](https://github.com/hostinger/ansible-collection-common/compare/v0.6.1...v0.7.0) (2024-06-09)
 
 
