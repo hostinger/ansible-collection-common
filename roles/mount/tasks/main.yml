@@ -1,0 +1,35 @@
+---
+- name: Create mountpoints
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode | default(mount_default_mode) }}"
+    owner: "{{ item.owner | default(mount_default_owner) }}"
+    group: "{{ item.group | default(mount_default_group) }}"
+  with_items:
+    - "{{ mount_mountpoints }}"
+  when:
+    - item.fstype != "swap"
+
+- name: Create file systems
+  community.general.filesystem:
+    device: "{{ item.src }}"
+    type: "{{ item.fstype }}"
+    opts: "{{ item.fsopts | default(omit) }}"
+  with_items:
+    - "{{ mount_mountpoints }}"
+
+- name: Mount mountpoints
+  ansible.posix.mount:
+    path: "{{ item.path }}"
+    backup: "{{ item.backup | default(omit) }}"
+    boot: "{{ item.boot | default(omit) }}"
+    dump: "{{ item.dump | default(omit) }}"
+    fstab: "{{ item.fstab | default(omit) }}"
+    fstype: "{{ item.fstype | default(omit) }}"
+    opts: "{{ item.opts | default(omit) }}"
+    passno: "{{ item.passno | default(omit) }}"
+    src: "{{ item.src | default(omit) }}"
+    state: "{{ item.state | default('mounted') }}"
+  with_items:
+    - "{{ mount_mountpoints }}"
