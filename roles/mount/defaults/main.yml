@@ -1,0 +1,20 @@
+---
+mount_default_mode: "0750"
+mount_default_owner: root
+mount_default_group: root
+mount_mountpoints: []
+# mount_mountpoints:
+# - path: /home/example
+#   src: /dev/sda1
+#   fstype: ext4
+#   fsopts: ""
+#   opts: defaults
+#   boot: true
+#   mode: "0755"
+#   state: mounted
+#   passno: 2
+#   backup: true
+#   fstab: ""
+#   owner: root
+#   group: root
+#   dump: 0
