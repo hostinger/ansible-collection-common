@@ -6,7 +6,7 @@ version: 0.9.0 # x-release-please-version
 readme: README.md
 authors:
   - konradasb
-description: Collection of Ansible roles for configuring Linux servers used internally at Hostinger.
+description: Collection of Ansible roles for configuring Linux servers.
 license:
   - MIT
 dependencies:
