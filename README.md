@@ -1,6 +1,6 @@
 # Hostinger Common Ansible Collection
 
-Collection of Ansible roles for configuring Linux servers used internally at Hostinger.
+Collection of Ansible roles for configuring Linux servers.
 
 ## Installation
 
