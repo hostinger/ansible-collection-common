@@ -1,7 +1,7 @@
 namespace: hostinger
 name: common
 repository: https://github.com/hostinger/ansible-collection-common
-version: 0.9.1
+version: 0.9.2
 readme: README.md
 authors:
   - konradasb

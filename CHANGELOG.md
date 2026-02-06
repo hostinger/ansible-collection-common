@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.2](https://github.com/hostinger/ansible-collection-common/compare/v0.9.1...v0.9.2) (2026-02-06)
+
+
+### Bug Fixes
+
+* **registry:** Template registry name in tasks and handlers ([#28](https://github.com/hostinger/ansible-collection-common/issues/28)) ([bacf31a](https://github.com/hostinger/ansible-collection-common/commit/bacf31ae5b578d0daa0712be56ef6fcc71666815))
+
 ## [0.9.1](https://github.com/hostinger/ansible-collection-common/compare/v0.9.0...v0.9.1) (2026-02-06)
 
 
