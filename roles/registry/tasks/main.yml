@@ -68,3 +68,6 @@
     name: "Run registry garbage collection"
     special_time: "{{ registry_garbage_collect_schedule }}"
     job: "/usr/local/bin/registry garbage-collect {{ registry_garbage_collect_flags }} {{ registry_config_dir }}/{{ registry_name }}.yml"
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
