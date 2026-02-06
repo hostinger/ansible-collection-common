@@ -1,8 +1,7 @@
----
 namespace: hostinger
 name: common
 repository: https://github.com/hostinger/ansible-collection-common
-version: 0.9.0 # x-release-please-version
+version: 0.9.1
 readme: README.md
 authors:
   - konradasb
@@ -10,6 +9,6 @@ description: Collection of Ansible roles for configuring Linux servers.
 license:
   - MIT
 dependencies:
-  community.general: ">=4.5.0"
+  community.general: '>=4.5.0'
 tags:
   - linux

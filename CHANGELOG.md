@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.9.1](https://github.com/hostinger/ansible-collection-common/compare/v0.9.0...v0.9.1) (2026-02-06)
+
+
+### Bug Fixes
+
+* CODEOWNERS ([#26](https://github.com/hostinger/ansible-collection-common/issues/26)) ([453f10b](https://github.com/hostinger/ansible-collection-common/commit/453f10b875012ec9a7b4b5120cc65b846fd846c2))
+* **registry:** Flush handlers at the end of role ([15184b2](https://github.com/hostinger/ansible-collection-common/commit/15184b258adda46dcca545609e8505e3c1631222))
+* **registry:** Update version to 3.0.0 ([992bc9c](https://github.com/hostinger/ansible-collection-common/commit/992bc9c1658d0290742adbae90177a6a40ed1ccc))
+
 ## [0.9.0](https://github.com/hostinger/ansible-collection-common/compare/v0.8.0...v0.9.0) (2024-06-21)
 
 
