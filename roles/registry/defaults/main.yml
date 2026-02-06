@@ -1,5 +1,5 @@
 ---
-registry_version: 2.8.3
+registry_version: 3.0.0
 registry_url: |
   https://github.com/distribution/distribution/releases/download/v{{ registry_version }}/registry_{{ registry_version }}_{{ registry_os }}_{{ registry_arch }}.tar.gz
 registry_arch: amd64
