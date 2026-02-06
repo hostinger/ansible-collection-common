@@ -1,5 +1,5 @@
 ---
-- name: Create directories
+- name: "Create directories | registry@{{ registry_name }}"
   ansible.builtin.file:
     name: "{{ item }}"
     mode: 0755
@@ -10,7 +10,7 @@
     - "{{ registry_install_dir }}"
     - "{{ registry_config_dir }}"
 
-- name: Download tarball
+- name: "Download tarball | registry@{{ registry_name }}"
   ansible.builtin.get_url:
     url: "{{ registry_url }}"
     dest: "{{ registry_install_dir }}/registry.tar.gz"
@@ -19,7 +19,7 @@
     group: "{{ registry_group }}"
     timeout: 30
 
-- name: Unarchive tarball
+- name: "Unarchive tarball | registry@{{ registry_name }}"
   ansible.builtin.unarchive:
     src:  "{{ registry_install_dir }}/registry.tar.gz"
     remote_src: true
@@ -28,7 +28,7 @@
     owner: "{{ registry_owner }}"
     group: "{{ registry_group }}"
 
-- name: Create symlink to binary
+- name: "Create symlink to binary | registry@{{ registry_name }}"
   ansible.builtin.file:
     src: "{{ registry_install_dir }}/registry"
     dest: /usr/local/bin/registry
@@ -36,7 +36,7 @@
     state: link
     force: true
 
-- name: Template service file
+- name: "Template service file | registry@{{ registry_name }}"
   ansible.builtin.template:
     src: registry.service.j2
     dest: /etc/systemd/system/registry@.service
@@ -45,8 +45,9 @@
     group: root
   notify:
     - Reload systemd
+    - Restart registry@{{ registry_name }}
 
-- name: Template config file
+- name: "Template config file | registry@{{ registry_name }}"
   ansible.builtin.template:
     src: config.yml.j2
     dest: "{{ registry_config_dir }}/{{ registry_name }}.yml"
@@ -54,20 +55,20 @@
     owner: "{{ registry_owner }}"
     group: "{{ registry_group }}"
   notify:
-    - Restart registry
+    - Restart registry@{{ registry_name }}
 
-- name: Enable and start service
+- name: "Enable and start service | registry@{{ registry_name }}"
   ansible.builtin.service:
     name: registry@{{ registry_name }}
     enabled: true
     state: started
 
-- name: Create registry garbage collection cronjob
+- name: "Create registry garbage collection cronjob | registry@{{ registry_name }}"
   when: registry_garbage_collect_enabled
   ansible.builtin.cron:
     name: "Run registry garbage collection"
     special_time: "{{ registry_garbage_collect_schedule }}"
     job: "/usr/local/bin/registry garbage-collect {{ registry_garbage_collect_flags }} {{ registry_config_dir }}/{{ registry_name }}.yml"
 
-- name: Flush handlers
+- name: "Flush handlers | registry@{{ registry_name }}"
   ansible.builtin.meta: flush_handlers
