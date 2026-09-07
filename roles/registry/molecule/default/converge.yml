@@ -4,4 +4,29 @@
   - all
 
   roles:
-  - registry
+  # Multiple instances of the role share the binary and the registry@.service
+  # unit, so keep more than one of them here to cover that case.
+  - role: registry
+    vars:
+      registry_name: cache
+      registry_config:
+        version: 0.1
+        storage:
+          filesystem:
+            rootdirectory: /var/lib/registry/cache
+        http:
+          addr: localhost:5000
+          secret: asecretforlocaldevelopment
+  - role: registry
+    vars:
+      registry_name: docker.io
+      registry_config:
+        version: 0.1
+        storage:
+          filesystem:
+            rootdirectory: /var/lib/registry/docker.io
+        http:
+          addr: localhost:5001
+          secret: asecretforlocaldevelopment
+        proxy:
+          remoteurl: https://registry-1.docker.io

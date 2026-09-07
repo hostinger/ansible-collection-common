@@ -28,24 +28,19 @@
     owner: "{{ registry_owner }}"
     group: "{{ registry_group }}"
 
-- name: "Create symlink to binary | registry@{{ registry_name }}"
-  ansible.builtin.file:
-    src: "{{ registry_install_dir }}/registry"
-    dest: /usr/local/bin/registry
-    mode: 0755
-    state: link
-    force: true
-
+# Every file below is named after registry_name, so several instances of this
+# role can manage several registries on one host without sharing state. The
+# unit refers to the versioned binary directly, which is what makes a
+# registry_version bump visible to each instance as a change of its own unit.
 - name: "Template service file | registry@{{ registry_name }}"
   ansible.builtin.template:
     src: registry.service.j2
-    dest: /etc/systemd/system/registry@.service
+    dest: "/etc/systemd/system/registry-{{ registry_name }}.service"
     mode: 0644
     owner: root
     group: root
   notify:
-    - Reload systemd
-    - Restart registry@{{ registry_name }}
+    - "Restart registry-{{ registry_name }}"
 
 - name: "Template config file | registry@{{ registry_name }}"
   ansible.builtin.template:
@@ -55,20 +50,18 @@
     owner: "{{ registry_owner }}"
     group: "{{ registry_group }}"
   notify:
-    - Restart registry@{{ registry_name }}
+    - "Restart registry-{{ registry_name }}"
 
 - name: "Enable and start service | registry@{{ registry_name }}"
-  ansible.builtin.service:
-    name: registry@{{ registry_name }}
+  ansible.builtin.systemd:
+    name: "registry-{{ registry_name }}.service"
     enabled: true
     state: started
+    daemon_reload: true
 
 - name: "Create registry garbage collection cronjob | registry@{{ registry_name }}"
   when: registry_garbage_collect_enabled
   ansible.builtin.cron:
-    name: "Run registry garbage collection"
+    name: "Run registry garbage collection | registry@{{ registry_name }}"
     special_time: "{{ registry_garbage_collect_schedule }}"
-    job: "/usr/local/bin/registry garbage-collect {{ registry_garbage_collect_flags }} {{ registry_config_dir }}/{{ registry_name }}.yml"
-
-- name: "Flush handlers | registry@{{ registry_name }}"
-  ansible.builtin.meta: flush_handlers
+    job: "{{ registry_install_dir }}/registry garbage-collect {{ registry_garbage_collect_flags }} {{ registry_config_dir }}/{{ registry_name }}.yml"
