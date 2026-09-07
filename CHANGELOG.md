@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.10.0](https://github.com/hostinger/ansible-collection-common/compare/v0.9.2...v0.10.0) (2026-09-07)
+
+
+### Features
+
+* **registry:** Bump to v3.1.1 ([#33](https://github.com/hostinger/ansible-collection-common/issues/33)) ([2df8dc4](https://github.com/hostinger/ansible-collection-common/commit/2df8dc44c12a987707ed5b4e093ea307ad83af0e))
+
+
+### Bug Fixes
+
+* **registry:** Use a separate systemd unit per registry instance ([#31](https://github.com/hostinger/ansible-collection-common/issues/31)) ([ed0433d](https://github.com/hostinger/ansible-collection-common/commit/ed0433d17dbd317a19dad703395fa306b2125270))
+
 ## [0.9.2](https://github.com/hostinger/ansible-collection-common/compare/v0.9.1...v0.9.2) (2026-02-06)
 
 
