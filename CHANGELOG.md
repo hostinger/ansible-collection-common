@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/hostinger/ansible-collection-common/compare/v0.10.0...v0.11.0) (2026-10-28)
+
+
+### Features
+
+* Update CODWOENERS ([#43](https://github.com/hostinger/ansible-collection-common/issues/43)) ([fa45f7d](https://github.com/hostinger/ansible-collection-common/commit/fa45f7da080efd72f00ec73bbba7b54e505e1337))
+
 ## [0.10.0](https://github.com/hostinger/ansible-collection-common/compare/v0.9.2...v0.10.0) (2026-09-07)
 
 
