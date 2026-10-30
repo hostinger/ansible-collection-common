@@ -8,3 +8,7 @@ tc_redirect_tap_arch: amd64
 tc_redirect_tap_dir: /opt/tc-redirect-tap
 tc_redirect_tap_install_dir: "{{ tc_redirect_tap_dir }}/{{ tc_redirect_tap_version }}"
 tc_redirect_tap_bin_dir: "{{ tc_redirect_tap_dir }}/bin"
+# sha256 of the release asset per arch; bump together with tc_redirect_tap_version
+tc_redirect_tap_checksums:
+  amd64: acf91949dcd23f2986ed0b36de04afd3e64293c44a2990558be4425b67c7b2ff
+  arm64: 0c97adc85646354c2cf86bc1ef5d96e56b50402d83c937fdad1f0a2b6360af3f
