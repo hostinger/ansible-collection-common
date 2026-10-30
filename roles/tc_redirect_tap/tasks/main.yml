@@ -20,6 +20,7 @@
 - name: Download binary
   ansible.builtin.get_url:
     url: "{{ tc_redirect_tap_url }}"
+    checksum: "sha256:{{ tc_redirect_tap_checksums[tc_redirect_tap_arch] }}"
     dest: "{{ tc_redirect_tap_install_dir }}/tc-redirect-tap"
     mode: 0755
     owner: "{{ tc_redirect_tap_owner }}"
